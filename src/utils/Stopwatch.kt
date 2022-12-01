@@ -6,8 +6,10 @@ import java.util.*
 fun withStopwatch(action: () -> Unit) {
     val startTime = System.currentTimeMillis()
     action()
-    println("Action took: ${formatMilliseconds(System.currentTimeMillis() - startTime)}")
+    printTime(System.currentTimeMillis() - startTime)
 }
+
+private fun printTime(millis: Long) = println("Action took: ${formatMilliseconds(millis)}")
 
 private fun formatMilliseconds(millis: Long): String {
     val dateFormat = SimpleDateFormat("ss:SSSS")
