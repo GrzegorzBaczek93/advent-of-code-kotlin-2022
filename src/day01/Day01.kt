@@ -1,6 +1,7 @@
 package day01
 
 import readInput
+import utils.split
 import utils.withStopwatch
 
 fun main() {
@@ -13,43 +14,8 @@ fun main() {
     withStopwatch { println(part2(input)) }
 }
 
-private fun part1(input: List<String>): Int {
-    var biggestSum = 0
-    var currentSum = 0
+private fun part1(input: List<String>): Int = listOfSums(input).maxOf { it }
 
-    fun check() {
-        if (currentSum > biggestSum) biggestSum = currentSum
-        currentSum = 0
-    }
+private fun part2(input: List<String>): Int = listOfSums(input).sorted().takeLast(3).sum()
 
-    input.forEach {
-        when {
-            it.isBlank() -> check()
-            else -> currentSum += it.toInt()
-        }
-    }
-    check()
-
-    return biggestSum
-}
-
-private fun part2(input: List<String>): Int {
-    val biggestSums = mutableListOf(0, 0, 0)
-    var currentSum = 0
-
-    fun check() {
-        biggestSums.add(currentSum)
-        biggestSums.remove(biggestSums.min())
-        currentSum = 0
-    }
-
-    input.forEach {
-        when {
-            it.isBlank() -> check()
-            else -> currentSum += it.toInt()
-        }
-    }
-    check()
-
-    return biggestSums.sum()
-}
+private fun listOfSums(input: List<String>): List<Int> = input.split { it.isNotBlank() }.map { it.sumOf { it.toInt() } }
