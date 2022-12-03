@@ -18,8 +18,8 @@ private fun part1(input: List<String>) = input.sumOf { it.findCommon().asNumber(
 private fun part2(input: List<String>) = input.chunked(3).sumOf { it.findCommon().asNumber() }
 
 private fun String.findCommon(): Char {
-    val firstSlice = take(length / 2)
-    return takeLast(length / 2).first { firstSlice.contains(it) }
+    val (s1, s2) = chunked(length / 2)
+    return s2.first { s1.contains(it) }
 }
 
 private fun List<String>.findCommon(): Char {
@@ -27,7 +27,7 @@ private fun List<String>.findCommon(): Char {
     val commonElements = mutableSetOf<Char>()
 
     s2.forEach { if (s1.contains(it)) commonElements.add(it) }
-    return s3.first {commonElements.contains(it) }
+    return s3.first { commonElements.contains(it) }
 }
 
 private fun Char.asNumber(): Int {
