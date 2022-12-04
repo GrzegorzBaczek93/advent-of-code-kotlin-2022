@@ -1,6 +1,9 @@
 package day04
 
 import readInput
+import utils.isOverlapping
+import utils.isSubRange
+import utils.toRange
 import utils.withStopwatch
 
 fun main() {
@@ -13,5 +16,10 @@ fun main() {
     withStopwatch { println(part2(input)) }
 }
 
-private fun part1(input: List<String>) = input
-private fun part2(input: List<String>) = input
+private fun part1(input: List<String>) =
+    input.map { parse(it).let { (first, second) -> first.isSubRange(second) } }.count { it }
+
+private fun part2(input: List<String>) =
+    input.map { parse(it).let { (first, second) -> first.isOverlapping(second) } }.count { it }
+
+private fun parse(input: String) = input.split(",").map { it.toRange() }
