@@ -20,3 +20,20 @@ inline fun <T> List<T>.split(predicate: (T) -> Boolean): List<List<T>> {
 
     return resultList.toList()
 }
+
+/**
+ * Removes n last entries from list and return it.
+ */
+inline fun <T> MutableList<T>.removeLast(n: Int): List<T> {
+    if (isEmpty()) {
+        return emptyList()
+    }
+    if (n >= size) {
+        val removedItems = this.toList()
+        clear()
+        return removedItems
+    }
+    val removedItems = this.takeLast(n)
+    repeat(n) { removeLast() }
+    return removedItems
+}
