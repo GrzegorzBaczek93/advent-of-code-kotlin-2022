@@ -18,15 +18,5 @@ private fun part1(input: List<String>) = input.first().solve(4)
 
 private fun part2(input: List<String>) = input.first().solve(14)
 
-private fun String.solve(packageSize: Int): Int {
-    var startIndex = 0
-    while (startIndex + packageSize <= length) {
-        val chunk = substring(startIndex, startIndex + packageSize)
-        if (chunk.containsDuplicates().not()) {
-            return startIndex + packageSize
-        }
-        startIndex++
-    }
-
-    return -1
-}
+private fun String.solve(packageSize: Int) =
+    windowed(packageSize).indexOfFirst { it.containsDuplicates().not() }.plus(packageSize)
