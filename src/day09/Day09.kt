@@ -23,19 +23,25 @@ private fun List<String>.execute(ropeSize: Int = 1): Int {
     val tailVisitedPlaces = mutableSetOf(0 to 0)
     val rope = MutableList(ropeSize) { 0 to 0 }
 
-    map { it.split(" ") }.forEach { (direction, length) ->
-        repeat(length.toInt()) {
-            (0 until ropeSize).forEach {index ->
-                when (index) {
-                    0 -> rope[index] = rope[index].resolvePosition(direction)
-                    else -> rope[index] = rope[index].resolvePosition(rope[index - 1])
-                }
+    onEachMove { direction ->
+        (0 until ropeSize).forEach { index ->
+            rope[index] = when (index) {
+                0 -> rope[index].resolvePosition(direction)
+                else -> rope[index].resolvePosition(rope[index - 1])
             }
-            tailVisitedPlaces.add(rope[ropeSize - 1])
         }
+        tailVisitedPlaces.add(rope[ropeSize - 1])
     }
 
     return tailVisitedPlaces.size
+}
+
+private fun List<String>.onEachMove(move: (String) -> Unit) {
+    map { it.split(" ") }.forEach { (direction, length) ->
+        repeat(length.toInt()) {
+            move(direction)
+        }
+    }
 }
 
 private fun Pair<Int, Int>.resolvePosition(direction: String): Pair<Int, Int> {
