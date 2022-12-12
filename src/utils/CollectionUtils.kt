@@ -10,10 +10,10 @@ inline fun <T> List<T>.split(predicate: (T) -> Boolean): List<List<T>> {
 
     for (element in this) {
         if (predicate(element)) {
-            buffer.add(element)
-        } else {
             buffer.ifNotEmpty { resultList.add(buffer.toList()) }
             buffer.clear()
+        } else {
+            buffer.add(element)
         }
     }
     buffer.ifNotEmpty { resultList.add(buffer.toList()) }
@@ -36,4 +36,39 @@ inline fun <T> MutableList<T>.removeLast(n: Int): List<T> {
     val removedItems = this.takeLast(n)
     repeat(n) { removeLast() }
     return removedItems
+}
+
+/**
+ * Returns 6th *element* from the list.
+ *
+ * Throws an [IndexOutOfBoundsException] if the size of this list is less than 6.
+ */
+inline operator fun <T> List<T>.component6(): T {
+    return get(5)
+}
+
+/**
+ * Returns the multiplication of all elements in the collection.
+ */
+inline fun List<Int>.multiply(): Int {
+    if (this.isEmpty()) return 0
+
+    var sum: Int = 1
+    for (element in this) {
+        sum *= element
+    }
+    return sum
+}
+
+/**
+ * Returns the multiplication of all elements in the collection.
+ */
+inline fun List<Long>.multiply(): Long {
+    if (this.isEmpty()) return 0
+
+    var sum: Long = 1
+    for (element in this) {
+        sum *= element
+    }
+    return sum
 }

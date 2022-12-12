@@ -18,4 +18,4 @@ private fun part1(input: List<String>): Int = listOfSums(input).maxOf { it }
 
 private fun part2(input: List<String>): Int = listOfSums(input).sorted().takeLast(3).sum()
 
-private fun listOfSums(input: List<String>): List<Int> = input.split { it.isNotBlank() }.map { it.sumOf { it.toInt() } }
+private fun listOfSums(input: List<String>): List<Int> = input.split { it.isBlank() }.map { it.sumOf { it.toInt() } }
