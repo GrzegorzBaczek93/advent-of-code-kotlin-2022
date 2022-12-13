@@ -72,3 +72,14 @@ inline fun List<Long>.multiply(): Long {
     }
     return sum
 }
+
+/**
+ * For each indexed for two-dimensional
+ */
+inline fun List<String>.walkIndexed(action: (x: Int, y: Int, c: Char) -> Unit) {
+    forEachIndexed { x, internal ->
+        internal.forEachIndexed { y, e ->
+            action(x, y, e)
+        }
+    }
+}
