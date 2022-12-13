@@ -1,6 +1,7 @@
 package day03
 
 import readInput
+import utils.asNumber
 import utils.withStopwatch
 
 fun main() {
@@ -28,12 +29,4 @@ private fun List<String>.findCommon(): Char {
 
     s2.forEach { if (s1.contains(it)) commonElements.add(it) }
     return s3.first { commonElements.contains(it) }
-}
-
-private fun Char.asNumber(): Int {
-    return if (this.isLowerCase()) {
-        this.code - 96
-    } else {
-        this.code - 38
-    }
 }
