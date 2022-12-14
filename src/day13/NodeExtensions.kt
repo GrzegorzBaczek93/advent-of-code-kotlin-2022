@@ -1,6 +1,5 @@
 package day13
 
-
 fun Node.compare(other: Node): Int {
     return when {
         this is Node.NodeList && other is Node.NodeList -> this.compare(other)

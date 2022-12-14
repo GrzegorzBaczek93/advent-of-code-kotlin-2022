@@ -60,7 +60,7 @@ private fun part2(input: List<String>) {
 }
 
 private fun print(x: Int, cycle: Int) {
-    val char = if ((cycle - 1).mod(40) + 1 in (x ..x + 2)) '#' else '.'
+    val char = if ((cycle - 1).mod(40) + 1 in (x..x + 2)) '#' else '.'
     if (cycle.mod(40) == 0) println(char) else print(char)
 }
 

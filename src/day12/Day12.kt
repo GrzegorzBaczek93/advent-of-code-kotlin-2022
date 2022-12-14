@@ -3,7 +3,6 @@ package day12
 import readInput
 import utils.withStopwatch
 import java.util.LinkedList
-import kotlin.math.absoluteValue
 
 fun main() {
     val testInput = readInput("input12_test")

@@ -1,6 +1,10 @@
 package day13
 
-import kotlinx.serialization.json.*
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.int
 import readInput
 import utils.multiply
 import utils.withStopwatch
@@ -26,7 +30,7 @@ private fun part2(input: List<String>) = input.asSequence().filter { it.isNotBla
     .mapIndexed { index, node -> index + 1 to node }
     .filter {
         it.second == Node.NodeList(listOf(Node.NodeList(listOf(Node.NodeValue(2))))) ||
-                it.second == Node.NodeList(listOf(Node.NodeList(listOf(Node.NodeValue(6)))))
+            it.second == Node.NodeList(listOf(Node.NodeList(listOf(Node.NodeValue(6)))))
     }
     .map { it.first }.toList()
     .multiply()

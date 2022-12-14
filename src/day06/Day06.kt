@@ -1,8 +1,8 @@
 package day06
 
 import readInput
-import utils.withStopwatch
 import utils.containsDuplicates
+import utils.withStopwatch
 
 fun main() {
     val testInput = readInput("input06_test")
