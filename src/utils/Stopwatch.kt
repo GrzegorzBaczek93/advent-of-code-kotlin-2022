@@ -3,10 +3,9 @@ package utils
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun withStopwatch(action: () -> Unit) {
+fun <T> withStopwatch(action: () -> T): T {
     val startTime = System.currentTimeMillis()
-    action()
-    printTime(System.currentTimeMillis() - startTime)
+    return action().also { printTime(System.currentTimeMillis() - startTime) }
 }
 
 private fun printTime(millis: Long) = println("Action took: ${formatMilliseconds(millis)}")
